@@ -21,7 +21,7 @@ A curated archive of every hackathon project built under the **[Crest of Firebor
 | # | Project | Hackathon | Theme | Tech Stack | Result |
 |---|---|---|---|---|---|
 
-| 01 | [Naag Shakti Clinic Booking](./projects/2026-naagshakti-clinic/) | Intel Hackathon | Healthcare Access | Python · HTML5 - CSS3 - Vanilla JavaScript (ES6+) | Participated |
+| 01 | [Naag Shakti Clinic Booking] projects/2026-naagshakti-clinic | Intel Hackathon | Healthcare Access | Python · HTML5 - CSS3 - Vanilla JavaScript (ES6+) | Participated |
 
 ---
 
