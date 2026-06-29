@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Naag Shakti Clinic Appointments</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f6f5f5;
+        color: #1b2440;
+      }
+
+      #status-bar {
+        text-align: center;
+        padding: 7px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+
+      .page {
+        max-width: 1650px;
+        margin: 67px auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+        padding: 24px 28px 32px;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #101b35;
+      }
+
+      h1 span.logo {
+        width: 32px; height: 32px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, #a5b4fc, #4f46e5);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      h2 { margin-top: 0; font-size: 1.2rem; color: #111827; }
+
+      p.subtitle {
+        margin-top: 4px;
+        margin-bottom: 20px;
+        color: #64748b;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1.1fr;
+        gap: 20px;
+        margin-top: 16px;
+      }
+
+      .card {
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        padding: 16px 18px 20px;
+        background: linear-gradient(135deg, #ffffff, #f9fafb);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .badge {
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        background: #111112;
+        color: #f6f6fb;
+        border: 1px solid #e0e7ff;
+      }
+
+      form { display: flex; flex-direction: column; gap: 10px; }
+
+      .field-row { display: flex; gap: 10px; }
+
+      .field { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+
+      label { font-size: 0.8rem; font-weight: 600; color: #4b5563; }
+
+      input, select {
+        padding: 8px 9px;
+        border-radius: 8px;
+        border: 1px solid #101010;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        background-color: #fff;
+      }
+
+      input:focus { border-color: #4f46e5; box-shadow: 0 0 0 1px rgba(79,70,229,0.25); }
+      input.error { border-color: #dc2626; background: #fef2f2; }
+
+      .hint      { font-size: 0.75rem; color: #9ca3af; }
+      .error-msg { font-size: 0.75rem; color: #b91c1c; min-height: 1rem; }
+
+      .btn-row {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      button {
+        border-radius: 999px;
+        border: none;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+      }
+
+      button.primary {
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: #fff;
+        box-shadow: 0 8px 16px rgba(79,70,229,0.25);
+      }
+      button.primary:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(79,70,229,0.3); }
+      button.primary:disabled { background: #a5b4fc; cursor: not-allowed; transform: none; }
+
+      button.secondary { background: #e5e7eb; color: #111827; }
+      button.secondary:hover { background: #d1d5db; }
+
+      table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.9rem; }
+      thead { background: #f3f4f6; }
+      th, td { padding: 8px 10px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+      th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: #6b7280; }
+      tbody tr:nth-child(even) { background: #f9fafb; }
+      tbody tr:hover { background: #eef2ff; }
+
+      .empty-state {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px dashed #d1d5db;
+        font-size: 0.85rem;
+        color: #6b7280;
+        text-align: center;
+        margin-top: 8px;
+      }
+
+      .search-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+        margin-top: 8px;
+      }
+
+      .search-result {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        padding: 10px 12px;
+        border-radius: 8px;
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        display: none;
+      }
+
+      .search-result.not-found { background: #fef2f2; border-color: #fecaca; color: #b91c1c; }
+
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      footer { margin-top: 20px; font-size: 0.75rem; color: #9ca3af; text-align: right; }
+
+      @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+
+    <div class="page">
+      <header>
+        <h1>
+          <span class="logo">NS</span>
+          Naag Shakti Clinic Appointments
+        </h1>
+        <p class="subtitle">
+           Welcome to our clinic!! How can we help you??
+        </p>
+      </header>
+
+      <div class="grid">
+        
+        <section class="card" aria-labelledby="add-title">
+          <div class="card-header">
+            <h2 id="add-title">Add Appointment</h2>
+            <span class="badge">New Appointment</span>
+          </div>
+          <form id="appointment-form" autocomplete="off">
+            <div class="field-row">
+              <div class="field">
+                <label for="patient-id">Patient ID</label>
+                <input id="patient-id" type="text" inputmode="numeric" placeholder="Enter Patient's ID!!"/>
+                <div class="error-msg" id="id-error"></div>
+              </div>
+              <div class="field">
+                <label for="patient-name">Name</label>
+                <input id="patient-name" type="text" placeholder="Enter Your Name!!"/>
+                <div class="error-msg" id="name-error"></div>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="age">Age</label>
+                <input id="age" type="text" inputmode="numeric" placeholder="Enter Your Age!!"/>
+                <div class="error-msg" id="age-error"></div>
+              </div>
+              <div class="field">
+                <label for="problem">Problem</label>
+                <input id="problem" type="text" placeholder="What problems are you facing"/>
+                <div class="error-msg" id="problem-error"></div>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="time">Time</label>
+                <input id="time" type="text" placeholder="Enter when you want to come?"/>
+                <div class="error-msg" id="time-error"></div>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="secondary" id="Delete-btn">Delete</button>
+              <button type="submit" class="primary" id="confirm-btn">Confirm Your Appointment</button>
+            </div>
+          </form>
+        </section>
+       
+        <section class="card" aria-labelledby="list-title">
+          <div class="card-header">
+            <h2 id="list-title">Appointments</h2>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span class="badge" id="appointment-count">0 total</span>
+              <button type="button" class="secondary" style="padding:3px 12px;font-size:0.78rem" onclick="loadAppointments()">Refresh</button>
+            </div>
+          </div>
+
+          <div class="search-row">
+            <div class="field">
+              <label for="search-id">Search by Patient ID</label>
+              <input id="search-id" type="text" inputmode="numeric" placeholder="Enter Patient's ID"/>
+            </div>
+            <button type="button" class="secondary" id="search-btn">Search</button>
+          </div>
+          <div class="hint">ID must be a number. If not found, you'll see "Not Found".</div>
+          <div id="search-result" class="search-result"></div>
+
+          <div id="empty-state" class="empty-state">No appointments yet. First add one on the left.</div>
+          <table id="appointments-table" style="display:none">
+            <thead>
+              <tr><th>ID</th><th>Name</th><th>Age</th><th>Problem</th><th>Time</th></tr>
+            </thead>
+            <tbody id="appointments-body"></tbody>
+          </table>
+        </section>
+
+      </div>
+
+      <footer>
+        Contact details
+        <br>
+        Phone no. :- 9873764796
+        <br>
+        Email ID :- naagshakti001@gmail.com
+      </footer>
+    </div>
+
+    <script>
+      const BASE = "http://localhost:5000";
+
+      function validateId(raw) {
+        const t = raw.trim();
+        if (!t || !/^\d+$/.test(t)) return { valid: false, error: "ID must be number" };
+        return { valid: true, value: parseInt(t, 10) };
+      }
+
+      function validateTime(raw) {
+        const parts = raw.trim().toUpperCase().split(/\s+/);
+        if (parts.length !== 2 || !/^\d+$/.test(parts[0]) || !["AM","PM"].includes(parts[1]))
+          return { valid: false, error: "Enter valid time (10 AM to 2 PM ; 3 PM to 8 PM)" };
+        const h = parseInt(parts[0]);
+        if (h < 1 || h > 12) return { valid: false, error: "Enter valid time (10 AM to 2 PM ; 3 PM to 8 PM)" };
+        return { valid: true, value: `${h} ${parts[1]}` };
+      }
+
+      function clearErrors() {
+        ["id-error","name-error","age-error","problem-error","time-error"].forEach(id => {
+          document.getElementById(id).textContent = "";
+        });
+        ["patient-id","patient-name","age","problem","time"].forEach(id => {
+          document.getElementById(id).classList.remove("error");
+        });
+      }
+
+      function setError(fieldId, errorId, msg) {
+        document.getElementById(fieldId).classList.add("error");
+        document.getElementById(errorId).textContent = msg;
+      }
+
+      document.getElementById("appointment-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearErrors();
+
+        const idVal      = document.getElementById("patient-id").value;
+        const nameVal    = document.getElementById("patient-name").value.trim();
+        const ageVal     = document.getElementById("age").value.trim();
+        const problemVal = document.getElementById("problem").value.trim();
+        const timeVal    = document.getElementById("time").value;
+
+        const idCheck   = validateId(idVal);
+        const timeCheck = validateTime(timeVal);
+
+        let hasError = false;
+        if (!idCheck.valid)    { setError("patient-id", "id-error", idCheck.error);      hasError = true; }
+        if (!nameVal)          { setError("patient-name","name-error","Name cannot be empty"); hasError = true; }
+        if (!ageVal)           { setError("age",         "age-error","Age cannot be empty");  hasError = true; }
+        if (!problemVal)       { setError("problem",     "problem-error","Problem cannot be empty"); hasError = true; }
+        if (!timeCheck.valid)  { setError("time",        "time-error", timeCheck.error);  hasError = true; }
+        if (hasError) return;
+
+        const btn = document.getElementById("confirm-btn");
+        btn.disabled = true;
+        btn.textContent = "Adding...";
+
+        try {
+          const res  = await fetch(BASE + "/appointments", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: idVal, name: nameVal, age: ageVal, problem: problemVal, time: timeVal })
+          });
+          const data = await res.json();
+
+          if (res.status === 201) {
+            alert("Appointment Added Successfully");
+            document.getElementById("appointment-form").reset();
+            document.getElementById("patient-id").focus();
+            loadAppointments();
+          } else {
+            alert("Error: " + data.error);
+          }
+        } catch {
+          alert("Cannot reach server. Is Python running?");
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "Confirm your Appointment";
+        }
+      });
+
+      // CORRECTED: Attached to "Delete-btn" instead of the non-existent "clear-btn"
+      document.getElementById("Delete-btn").addEventListener("click", () => {
+        document.getElementById("appointment-form").reset();
+        clearErrors();
+        document.getElementById("patient-id").focus();
+      });
+
+      async function loadAppointments() {
+        try {
+          const res  = await fetch(BASE + "/appointments");
+          const data = await res.json();
+
+          const count  = data.length;
+          document.getElementById("appointment-count").textContent = count === 1 ? "1 total" : `${count} total`;
+
+          const empty = document.getElementById("empty-state");
+          const table = document.getElementById("appointments-table");
+          const tbody = document.getElementById("appointments-body");
+
+          if (count === 0) {
+            empty.style.display = "block";
+            table.style.display = "none";
+            tbody.innerHTML = "";
+            return;
+          }
+
+          empty.style.display = "none";
+          table.style.display = "table";
+          tbody.innerHTML = data.map(a => `
+            <tr>
+              <td>${a.id}</td><td>${a.name}</td><td>${a.age}</td>
+              <td>${a.problem}</td><td>${a.time}</td>
+            </tr>`).join("");
+        } catch {
+          document.getElementById("empty-state").textContent = "❌ Cannot reach server.";
+        }
+      }
+
+      document.getElementById("search-btn").addEventListener("click", async () => {
+        const raw = document.getElementById("search-id").value;
+        const box = document.getElementById("search-result");
+        box.style.display = "none";
+        box.className = "search-result";
+
+        const check = validateId(raw);
+        if (!check.valid) {
+          box.textContent = "ID must be number";
+          box.classList.add("not-found");
+          box.style.display = "block";
+          return;
+        }
+
+        try {
+          const res  = await fetch(BASE + `/search?id=${raw.trim()}`);
+          const data = await res.json();
+
+          if (res.status === 200) {
+            box.innerHTML = `
+              <div><span class="pill">Match</span></div>
+              <div><strong>ID:</strong> ${data.id}</div>
+              <div><strong>Name:</strong> ${data.name}</div>
+              <div><strong>Age:</strong> ${data.age}</div>
+              <div><strong>Problem:</strong> ${data.problem}</div>
+              <div><strong>Time:</strong> ${data.time}</div>`;
+          } else {
+            box.textContent = "Not Found";
+            box.classList.add("not-found");
+          }
+          box.style.display = "block";
+        } catch {
+          box.textContent = "❌ Cannot reach server.";
+          box.classList.add("not-found");
+          box.style.display = "block";
+        }
+      });
+
+      document.getElementById("search-id").addEventListener("keydown", e => {
+        if (e.key === "Enter") { e.preventDefault(); document.getElementById("search-btn").click(); }
+      });
+    </script>
+  </body>
+</html>
