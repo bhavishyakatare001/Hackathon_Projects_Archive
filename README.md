@@ -1,4 +1,4 @@
-# ⚡ HACKFORGE
+# ⚡ HACKATHON PROJECTS ARCHIVE
 
 > *Where ideas are stress-tested under fire.*
 
