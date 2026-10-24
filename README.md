@@ -1,4 +1,4 @@
-# ⚡ HACKATHON PROJECTS ARCHIVE
+#  HACKATHON PROJECTS ARCHIVE
 
 > *Where ideas are stress-tested under fire.*
 
@@ -6,17 +6,17 @@ A curated archive of every hackathon project built under the **[Crest of Firebor
 
 ---
 
-## 📊 Stats
+##  Stats
 
 | Metric | Count |
 |---|---|
-| 🏁 Hackathons Participated | 1 |
-| 🏥 Domain: Healthcare | 1 |
-| 🥇 Wins / Placements | — |
+|  Hackathons Participated | 1 |
+|  Domain: Healthcare | 1 |
+|  Wins / Placements | — |
 
 ---
 
-## 🗂️ Projects
+##  Projects
 
 | # | Project | Hackathon | Theme | Tech Stack | Result |
 |---|---|---|---|---|---|
@@ -24,7 +24,7 @@ A curated archive of every hackathon project built under the **[Crest of Firebor
 
 ---
 
-## 📁 Repo Structure
+##  Repo Structure
 
     Hackathon_Projects_Archive/
     ├── README.md                        <- You are here
@@ -42,7 +42,7 @@ Examples:
 
 ---
 
-## 👤 Author
+##  Author
 
 **Bhavishya Katare (Dragon)**
 B.Tech AI & Analytics, Medi-Caps University, Indore
