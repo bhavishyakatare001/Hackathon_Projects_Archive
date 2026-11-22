@@ -1,4 +1,4 @@
-#  HACKATHON PROJECTS ARCHIVE
+# HACKATHON PROJECTS ARCHIVE
 
 > *Where ideas are stress-tested under fire.*
 
@@ -6,31 +6,33 @@ A curated archive of every hackathon project built under the **[Crest of Firebor
 
 ---
 
-##  Stats
+## Stats
 
 | Metric | Count |
 |---|---|
-|  Hackathons Participated | 1 |
-|  Domain: Healthcare | 1 |
-|  Wins / Placements | — |
+| Hackathons Participated | 1 |
+| Domain: Healthcare | 1 |
+| Wins / Placements | — |
 
 ---
 
-##  Projects
+## Projects
 
 | # | Project | Hackathon | Theme | Tech Stack | Result |
 |---|---|---|---|---|---|
-| 01 | [Naag Shakti Clinic Booking](projects/2026-intel-naagshakti-clinic) | Intel Hackathon | Healthcare Access | Python, HTML5, CSS3, Vanilla JavaScript (ES6+) | Participated |
+| 01 | [Naag Shakti Clinic Booking](projects/2026-intel-naagshakti-clinic/) | Innovation Sprint (Intel Unnati), Apr 2026 | Healthcare Access | Python, HTML5, CSS3, Vanilla JavaScript (ES6+) | Participated |
 
 ---
 
-##  Repo Structure
+## Repo Structure
 
     Hackathon_Projects_Archive/
     ├── README.md                        <- You are here
     ├── contributing.md                  <- How to log a new project
     └── projects/
         └── YYYY-organizer-projectname/  <- One folder per hackathon
+            ├── README.md                <- What it is, how to run it, what I learned
+            └── ...                      <- Source files
 
 ### Naming Convention
 
@@ -42,7 +44,7 @@ Examples:
 
 ---
 
-##  Author
+## Author
 
 **Bhavishya Katare (Dragon)**
 B.Tech AI & Analytics, Medi-Caps University, Indore

@@ -91,7 +91,7 @@ if __name__ == "__main__":
     print("=" * 47)
     print("   Clinic Booking Server is RUNNING")
     print("   URL  :  http://127.0.0.1:5000")
-    print("   Next :  open Frontend.html")
+    print("   Next :  open frontend.html")
     print("   Stop :  Ctrl+C")
     print("=" * 47)
     try:
