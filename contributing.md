@@ -1,93 +1,41 @@
-# Contributing to HACKFORGE
+# Adding a project to this archive
 
-This repo is a personal archive. These guidelines are for my own future self — and anyone collaborating on a hackathon with me.
+A short checklist for logging a new hackathon project.
 
----
+## 1. Create the folder
 
-## Adding a New Project
-
-### Step 1 — Create the folder
-
-Follow the naming convention strictly:
+Use this naming convention:
 
 ```
 projects/YYYY-organizer-projectname/
 ```
 
-Examples:
-- `projects/2026-mlh-voiceai/`
-- `projects/2026-devfolio-fintech/`
+Example: `projects/2026-intel-naagshakti-clinic/`
 
-### Step 2 — Copy the template
+## 2. Add the code and a README
 
-```bash
-cp -r _template/ projects/YYYY-organizer-projectname/
-```
+Put the source files in the folder. The project README should cover:
 
-### Step 3 — Fill in the README
+- What it is and which hackathon it was built at (name, year, constraints)
+- What it does
+- Tech stack
+- How to run it
+- Known limitations
+- What I learned
 
-Open `projects/YYYY-organizer-projectname/README.md` and fill every section. Don't leave placeholders.
+Put screenshots and diagrams in `projects/YYYY-organizer-projectname/assets/`.
 
-Sections you must fill:
-- [ ] Hackathon Info table (all rows)
-- [ ] Problem Statement
-- [ ] Solution
-- [ ] Architecture (at least ASCII diagram)
-- [ ] Tech Stack
-- [ ] Features
-- [ ] What I Learned
+## 3. Update the main README
 
-Sections that are optional if not applicable:
-- [ ] Demo (if not recorded)
-- [ ] What's Next (if not continuing it)
+Add a row to the Projects table in `README.md` and update the Stats table.
 
-### Step 4 — Add assets
-
-Put screenshots, architecture diagrams, and demo GIFs inside:
-```
-projects/YYYY-organizer-projectname/assets/
-```
-
-### Step 5 — Update the main README
-
-Add a row to the Projects table in `README.md`:
-
-```markdown
-| 0N | [Project Name](./projects/YYYY-organizer-projectname/) | Hackathon Name | Theme | Tech Stack | Result |
-```
-
-Also update the Stats table if the count changed.
-
-### Step 6 — Commit
+## 4. Commit
 
 ```bash
 git add .
-git commit -m "feat(hackforge): add YYYY organizer — project-name"
+git commit -m "feat: add YYYY organizer projectname"
 ```
 
-Commit format: `feat(hackforge): add YYYY organizer — project-name`
+## Larger projects
 
----
-
-## Source Code Policy
-
-- If the project code lives in this repo: put it in `projects/YYYY-organizer-projectname/src/`
-- If the project has its own repository: link to it in the README under **Demo** and add the repo as a Git submodule:
-
-```bash
-git submodule add https://github.com/your-username/project-repo projects/YYYY-organizer-projectname/src
-```
-
----
-
-## What Goes Here vs What Goes in Its Own Repo
-
-| This repo | Separate repo |
-|---|---|
-| README, docs, assets, pitch deck | Full source code (for large projects) |
-| Small scripts / prototypes | Production-grade hackathon projects |
-| Projects with no standalone value | Projects you plan to continue |
-
----
-
-<sub>Crest of Fireborne · hackforge</sub>
+If a project is big or I plan to keep working on it, give it its own repository and link to it from the project README instead of copying the code here.
